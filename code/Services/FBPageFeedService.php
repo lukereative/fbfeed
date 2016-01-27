@@ -103,19 +103,23 @@ class FBPageFeedService
             $request = new FacebookRequest(
                 $this->fbSession,
                 'GET',
-                '/' . $this->pageID . '/feed'
+                '/' . $this->pageID . '/feed?fields=id,object_id,message,link,created_time,type'
             );
             $response = $request->execute();
             $pagefeed = $response->getResponse();
 
             foreach($pagefeed->data as $iteration=>$responseData) {
-
                 if($iteration==$limit) break;
 
                 if(isset($responseData->message)) {
                     $posts[$iteration]['Content'] = $responseData->message;
-                    $posts[$iteration]['FBID'] = $responseData->object_id;
-                    $posts[$iteration]['URL'] = $responseData->link;
+                    $posts[$iteration]['FBID'] = $responseData->id;
+                    if (isset($responseData->link)) {
+                        $posts[$iteration]['URL'] = $responseData->link;
+                    } else {
+                        $url = explode('_', $responseData->id);
+                        $posts[$iteration]['URL'] = 'https://www.facebook.com/' . $url[0] . '/posts/' . $url[1];
+                    }
                     $posts[$iteration]['TimePosted'] = $responseData->created_time;
                 }
 
@@ -130,11 +134,12 @@ class FBPageFeedService
 
                         // Get the largest image for best quality
                         $images = $subResponse->images;
+                        $maxWidth = 400;
                         $largestWidth = 0;
                         $largestIndex = 0;
                         // Loop through each supplied image object, remembering the largest
                         foreach($images as $index=>$image) {
-                            if($image->width > $largestWidth) {
+                            if($image->width < $maxWidth && $image->width > $largestWidth) {
                                 $largestIndex = $index;
                                 $largestWidth = $image->width;
                             }
