@@ -1,14 +1,10 @@
 <?php
 
-namespace Olliepop\FBPageFeed;
-
-class PageControllerExtension extends \DataExtension
+class PageControllerExtension extends DataExtension
 {
-
-    public function getFBPageFeed()
+    public function getFBFeed()
     {
-        $fbService = new FBPageFeedService();
-        return $fbService->getStoredPosts();
+        $FBService = new FBFeedService();
+        return $FBService->getStoredPosts();
     }
-
 }

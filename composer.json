@@ -1,21 +1,21 @@
 {
-  "name": "olliepop/fbpagefeed",
-  "description": "Retrieves posts from a Facebook page for a SilverStripe site, pulling posts and storing them via CliController task",
-  "type": "silverstripe-module",
-  "homepage": "https://github.com/olliepop/fbpagefeed",
-  "author": [
-    {
-      "name": "Oliver Shaw",
-      "email": "oliver.shaw@littlegiant.co.nz"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/olliepop/fbpagefeed/issues"
-  },
-  "require": {
-    "php": ">=5.3.2",
-    "silverstripe/cms": ">=3.1.0",
-    "silverstripe/framework": ">=3.1.0",
-    "facebook/php-sdk-v4": "4.0.*"
-  }
+	"name": "lukereative/fbfeed",
+	"description": "Retrieves posts from a Facebook page using Facebook's API. These are stored in the database. New posts can be retrieved via a CLI task.",
+	"type": "silverstripe-module",
+	"homepage": "https://github.com/lukereative/silverstripe-fbfeed",
+	"author": [
+		{
+			"name": "Luke Edwards",
+			"email": "luke@silverstripe.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/lukereative/silverstripe-fbfeed/issues"
+	},
+	"require": {
+		"php": ">=5.4",
+		"silverstripe/cms": ">=3.5",
+		"silverstripe/framework": ">=3.5",
+		"facebook/graph-sdk": "5.*"
+	}
 }

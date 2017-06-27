@@ -1,0 +1,13 @@
+---
+Name: fbfeed
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+SiteConfig:
+  extensions:
+    - SiteConfigExtension
+
+Page_Controller:
+  extensions:
+    - PageControllerExtension
